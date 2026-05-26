@@ -1,0 +1,226 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─── MediBook Design Tokens ─────────────────────────────────────────────── */
+
+:root {
+  /* Brand colors */
+  --color-primary:        #1D4ED8; /* CTAs, links, active nav         */
+  --color-primary-light:  #DBEAFE; /* Hover states, bg tints           */
+  --color-primary-dark:   #1E3A8A; /* Pressed / deep nav               */
+
+  --color-teal:           #0D9488; /* Success states, doctor badges    */
+  --color-teal-light:     #CCFBF1; /* Teal tint backgrounds            */
+  --color-teal-dark:      #0F766E; /* Pressed teal                     */
+
+  /* Neutral surface */
+  --color-bg:             #F8FAFC; /* Page background                  */
+  --color-surface:        #FFFFFF; /* Cards, panels, modals            */
+  --color-border:         #E2E8F0; /* Dividers, input borders          */
+
+  /* Typography */
+  --color-text:           #0F172A; /* Headlines, primary text          */
+  --color-text-muted:     #64748B; /* Subtitles, labels, placeholders  */
+
+  /* Status */
+  --color-warning:        #F59E0B; /* Pending appointment status       */
+  --color-warning-light:  #FEF3C7; /* Warning tint background          */
+  --color-error:          #EF4444; /* Cancellations, errors            */
+  --color-error-light:    #FEE2E2; /* Error tint background            */
+  --color-success:        #10B981; /* Confirmed status                 */
+  --color-success-light:  #D1FAE5; /* Success tint background          */
+
+  /* Component tokens */
+  --radius:               0.625rem;
+
+  /* Sidebar */
+  --sidebar:              #FFFFFF;
+  --sidebar-foreground:   #0F172A;
+  --sidebar-border:       #E2E8F0;
+  --sidebar-primary:      #1D4ED8;
+  --sidebar-primary-fg:   #FFFFFF;
+  --sidebar-accent:       #DBEAFE;
+  --sidebar-accent-fg:    #1E3A8A;
+  --sidebar-ring:         #93C5FD;
+
+  /* shadcn/ui semantic aliases */
+  --background:           #F8FAFC;
+  --foreground:           #0F172A;
+  --card:                 #FFFFFF;
+  --card-foreground:      #0F172A;
+  --popover:              #FFFFFF;
+  --popover-foreground:   #0F172A;
+  --primary:              #1D4ED8;
+  --primary-foreground:   #FFFFFF;
+  --secondary:            #DBEAFE;
+  --secondary-foreground: #1E3A8A;
+  --muted:                #F1F5F9;
+  --muted-foreground:     #64748B;
+  --accent:               #DBEAFE;
+  --accent-foreground:    #1E3A8A;
+  --destructive:          #EF4444;
+  --input:                #E2E8F0;
+  --ring:                 #93C5FD;
+
+  /* Typography */
+  --font-sans:    'DM Sans Variable', 'DM Sans', system-ui, sans-serif;
+  --font-heading: 'DM Sans Variable', 'DM Sans', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, Consolas, monospace;
+
+  font: 16px/150% var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ─── Dark Mode ──────────────────────────────────────────────────────────── */
+
+.dark {
+  --color-primary:        #3B82F6;
+  --color-primary-light:  #1E3A8A;
+  --color-primary-dark:   #93C5FD;
+
+  --color-teal:           #2DD4BF;
+  --color-teal-light:     #134E4A;
+  --color-teal-dark:      #99F6E4;
+
+  --color-bg:             #0B1120;
+  --color-surface:        #111827;
+  --color-border:         #1F2937;
+
+  --color-text:           #F1F5F9;
+  --color-text-muted:     #94A3B8;
+
+  --color-warning:        #FBBF24;
+  --color-warning-light:  #451A03;
+  --color-error:          #F87171;
+  --color-error-light:    #450A0A;
+  --color-success:        #34D399;
+  --color-success-light:  #022C22;
+
+  --sidebar:              #111827;
+  --sidebar-foreground:   #F1F5F9;
+  --sidebar-border:       #1F2937;
+  --sidebar-primary:      #3B82F6;
+  --sidebar-primary-fg:   #FFFFFF;
+  --sidebar-accent:       #1E3A8A;
+  --sidebar-accent-fg:    #93C5FD;
+  --sidebar-ring:         #1D4ED8;
+
+  --background:           #0B1120;
+  --foreground:           #F1F5F9;
+  --card:                 #111827;
+  --card-foreground:      #F1F5F9;
+  --popover:              #111827;
+  --popover-foreground:   #F1F5F9;
+  --primary:              #3B82F6;
+  --primary-foreground:   #FFFFFF;
+  --secondary:            #1E3A8A;
+  --secondary-foreground: #DBEAFE;
+  --muted:                #1F2937;
+  --muted-foreground:     #94A3B8;
+  --accent:               #1E3A8A;
+  --accent-foreground:    #DBEAFE;
+  --destructive:          #F87171;
+  --input:                #1F2937;
+  --ring:                 #1D4ED8;
+}
+
+/* ─── Tailwind v4 Theme Registration ─────────────────────────────────────── */
+
+@theme inline {
+  /* Fonts */
+  --font-sans:    var(--font-sans);
+  --font-heading: var(--font-heading);
+  --font-mono:    var(--font-mono);
+
+  /* Border radius scale */
+  --radius-sm:  calc(var(--radius) * 0.6);  /* 0.375rem  */
+  --radius-md:  calc(var(--radius) * 0.8);  /* 0.5rem    */
+  --radius-lg:  var(--radius);               /* 0.625rem  */
+  --radius-xl:  calc(var(--radius) * 1.4);  /* 0.875rem  */
+  --radius-2xl: calc(var(--radius) * 1.8);  /* 1.125rem  */
+  --radius-3xl: calc(var(--radius) * 2.2);  /* 1.375rem  */
+  --radius-4xl: calc(var(--radius) * 2.6);  /* 1.625rem  */
+
+  /* ── Brand palette ── */
+  --color-primary:          var(--color-primary);
+  --color-primary-light:    var(--color-primary-light);
+  --color-primary-dark:     var(--color-primary-dark);
+
+  --color-teal:             var(--color-teal);
+  --color-teal-light:       var(--color-teal-light);
+  --color-teal-dark:        var(--color-teal-dark);
+
+  /* ── Neutral surface ── */
+  --color-bg:               var(--color-bg);
+  --color-surface:          var(--color-surface);
+  --color-border:           var(--color-border);
+
+  /* ── Typography ── */
+  --color-text:             var(--color-text);
+  --color-text-muted:       var(--color-text-muted);
+
+  /* ── Status ── */
+  --color-warning:          var(--color-warning);
+  --color-warning-light:    var(--color-warning-light);
+  --color-error:            var(--color-error);
+  --color-error-light:      var(--color-error-light);
+  --color-success:          var(--color-success);
+  --color-success-light:    var(--color-success-light);
+
+  /* ── shadcn/ui semantic aliases ── */
+  --color-background:             var(--background);
+  --color-foreground:             var(--foreground);
+  --color-card:                   var(--card);
+  --color-card-foreground:        var(--card-foreground);
+  --color-popover:                var(--popover);
+  --color-popover-foreground:     var(--popover-foreground);
+  --color-primary:                var(--primary);
+  --color-primary-foreground:     var(--primary-foreground);
+  --color-secondary:              var(--secondary);
+  --color-secondary-foreground:   var(--secondary-foreground);
+  --color-muted:                  var(--muted);
+  --color-muted-foreground:       var(--muted-foreground);
+  --color-accent:                 var(--accent);
+  --color-accent-foreground:      var(--accent-foreground);
+  --color-destructive:            var(--destructive);
+  --color-input:                  var(--input);
+  --color-ring:                   var(--ring);
+
+  /* ── Sidebar ── */
+  --color-sidebar:                var(--sidebar);
+  --color-sidebar-foreground:     var(--sidebar-foreground);
+  --color-sidebar-border:         var(--sidebar-border);
+  --color-sidebar-primary:        var(--sidebar-primary);
+  --color-sidebar-primary-fg:     var(--sidebar-primary-fg);
+  --color-sidebar-accent:         var(--sidebar-accent);
+  --color-sidebar-accent-fg:      var(--sidebar-accent-fg);
+  --color-sidebar-ring:           var(--sidebar-ring);
+}
+
+/* ─── Base Layer ─────────────────────────────────────────────────────────── */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  html {
+    @apply font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-foreground;
+  }
+}
